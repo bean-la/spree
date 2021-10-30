@@ -44,7 +44,7 @@ module Spree
           end
 
           def serializer_params
-            super.merge(include_products: params[:include_products] == 'true')
+            super.merge(include_products: ENV['SPREE_INCLUDE_PRODUCTS_DEFAULT'] == 't' || params[:include_products] == 'true')
           end          
 
           def allowed_sort_attributes
