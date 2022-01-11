@@ -16,7 +16,9 @@ module Spree
         options ||= {}
         quantity ||= 1
 
-        line_item = Spree::Dependencies.line_item_by_variant_finder.constantize.new.execute(order: order, variant: variant, options: options)
+        # disable line item variant merging
+        # TODO: put this behind config flag
+        line_item = nil # Spree::Dependencies.line_item_by_variant_finder.constantize.new.execute(order: order, variant: variant, options: options)
 
         line_item_created = line_item.nil?
         if line_item.nil?
